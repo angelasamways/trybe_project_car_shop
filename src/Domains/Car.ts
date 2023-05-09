@@ -1,7 +1,7 @@
 import ICar from '../Interfaces/ICar';
 
 class Car {
-  protected id?: string | undefined; // undefined se os dados não estiverem no banco (Ex: antes do cadastro)
+  protected id: string | undefined; // undefined se os dados não estiverem no banco (Ex: antes do cadastro)
   protected model: string;
   protected year: number;
   protected color: string;
