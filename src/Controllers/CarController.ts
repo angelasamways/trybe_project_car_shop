@@ -17,7 +17,6 @@ export default class CarController {
 
   async creating() {
     const car: ICar = {
-      id: this.req.body.id,
       model: this.req.body.model,
       year: this.req.body.year,
       color: this.req.body.color,
