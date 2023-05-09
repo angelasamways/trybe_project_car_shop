@@ -25,17 +25,22 @@ class CarODM {
     this.model = models.Car || model('Car', this.schema); // Antes de criar o Schema, verificar se o schema já existe. Caso não exista, o schema será criado.
   }
 
-  public async create(car: ICar): Promise<ICar> {
+  async create(car: ICar): Promise<ICar> {
     return this.model.create({ ...car });
   }
 
-  public async findAll(): Promise<ICar[]> {
+  async findAll(): Promise<ICar[]> {
     return this.model.find();
   }
 
-  public async getById(id: string): Promise<ICar | null> {
+  async getById(id: string): Promise<ICar | null> {
     if (!isValidObjectId(id)) throw new GenerateError(422, 'Invalid mongo id');
     return this.model.findById(id);
+  }
+
+  async updateById(id: string, carToUpdate: ICar): Promise<ICar | null> {
+    if (!isValidObjectId(id)) throw new GenerateError(422, 'Invalid mongo id');
+    return this.model.findByIdAndUpdate(id, carToUpdate, { new: true });
   }
 }
 
