@@ -32,4 +32,23 @@ export default class MotorcycleController {
       this.next(err);
     }
   }
+
+  async getAll() {
+    try {
+      const motos = await this.motorcycleService.getAll();
+      return this.res.status(200).json(motos);
+    } catch (err) {
+      this.next(err);
+    }
+  }
+
+  async getById() {
+    try {
+      const { id } = this.req.params;
+      const moto = await this.motorcycleService.getById(id);
+      return this.res.status(200).json(moto);
+    } catch (err) {
+      this.next(err);
+    }
+  }
 }
