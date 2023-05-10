@@ -14,6 +14,15 @@ describe('Deve possibilitar criar a rota /cars', function () {
     expect(result).to.be.deep.equal(carOutput);
   });
 
+  it('2.Criando a rota para cadastrar sem SUCESSO', async function () {
+    sinon.stub(Model, 'create').resolves(null);
+
+    const service = new CarService();
+    const result = await service.creating(carInput);
+
+    expect(result).to.be.deep.equal(null);
+  });
+
   afterEach(function () {
     sinon.restore();
   });
