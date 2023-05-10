@@ -33,4 +33,10 @@ export default class MotorcycleService {
     if (!getMotos) throw new GenerateError(404, 'Motorcycle not found');    
     return this.createMotorcycle(getMotos);
   }
+  async updateById(id: string, motoToUpdate: IMotorcycle) {
+    const motorcycleModel = new MotorcycleODM();
+    const updateMoto = await motorcycleModel.updateById(id, motoToUpdate);
+    if (!updateMoto) throw new GenerateError(404, 'Motorcycle not found');  
+    return this.createMotorcycle(updateMoto);
+  }
 }
