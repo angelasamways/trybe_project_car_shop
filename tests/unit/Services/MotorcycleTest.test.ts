@@ -32,6 +32,15 @@ describe('1.Deve possibilitar criar a rota /motorcycles', function () {
     expect(result).to.be.deep.equal(motorcyclesOutput);
   });
 
+  it('4. É possível buscar uma moto pelo ID com SUCESSO', async function () {
+    sinon.stub(Model, 'findById').resolves(motorcycleOutput);
+    
+    const service = new MotorcycleService();
+    const result = await service.getById('645be52f669ab72ae707c650');
+    
+    expect(result).to.be.deep.equal(motorcycleOutput);
+  });
+
   afterEach(function () {
     sinon.restore();
   });

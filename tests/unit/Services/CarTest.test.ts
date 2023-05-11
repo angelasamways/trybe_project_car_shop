@@ -32,6 +32,15 @@ describe('Deve possibilitar criar a rota /cars', function () {
     expect(result).to.be.deep.equal(carsOutput);
   });
 
+  it('4. É possível buscar um carro pelo ID com SUCESSO', async function () {
+    sinon.stub(Model, 'findById').resolves(carOutput);
+
+    const service = new CarService();
+    const result = await service.getById('645be275669ab72ae707c64e');
+
+    expect(result).to.be.deep.equal(carOutput);
+  });
+
   afterEach(function () {
     sinon.restore();
   });
